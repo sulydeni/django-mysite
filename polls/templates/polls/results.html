@@ -1,0 +1,13 @@
+{% if question.id %}
+<h1>{{ question.id }} : {{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ forloop.counter }}) {{ choice.choice_text }} {{ choice.votes }} vote{{ choice.votes|pluralize }}</label>
+{% endfor %}
+</ul>
+{% else %}
+    <p><strong>Question does not exist!</strong><p>
+{% endif %}
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+
